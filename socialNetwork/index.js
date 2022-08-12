@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const helmet = require("helmet");
 const morgan = require('morgan');
 const cors = require('cors');
+const apiV1 = process.env.API_V1
 
 // Loads env variables
 require('dotenv').config();
@@ -14,10 +15,9 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/dbConnection");
 
 // import routes
-// const authRoutes = require('./routers/v1/auth');
-// const usersRoutes = require('./routers/v1/users');
-// const postsRoutes = require('./routers/v1/posts');
-const apiRoutes = require('./routers');
+const authRoutesV1 = require('./routers/v1/auth');
+const usersRoutesV1 = require('./routers/v1/users');
+const postsRoutesV1 = require('./routers/v1/posts');
 
 // Initializes express server
 const app = express();
@@ -37,10 +37,10 @@ app.use(morgan("common"));
 app.get('/', (req, res) => {
     res.send('Welcome to Social Network API');
 })
-// app.use(`/auth`, authRoutes);
-// app.use(`/users`, usersRoutes);
-// app.use(`/posts`, postsRoutes);
-app.use(apiRoutes);
+app.use(`/${apiV1}/auth`, authRoutesV1);
+app.use(`/${apiV1}/users`, usersRoutesV1);
+app.use(`/${apiV1}/posts`, postsRoutesV1);
+
 
 // database and Server is up and running
 db.once("open", () => {
