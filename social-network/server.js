@@ -4,6 +4,9 @@ const helmet = require("helmet");
 const morgan = require('morgan');
 const cors = require('cors');
 
+// Loads env variables
+require('dotenv').config();
+
 //Let heroku do its thing with the port
 const PORT = process.env.PORT || 3001;
 
