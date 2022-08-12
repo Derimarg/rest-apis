@@ -14,9 +14,10 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/dbConnection");
 
 // import routes
-const authRoutes = require('./routers/auth');
-const usersRoutes = require('./routers/users');
-const postsRoutes = require('./routers/posts');
+// const authRoutes = require('./routers/v1/auth');
+// const usersRoutes = require('./routers/v1/users');
+// const postsRoutes = require('./routers/v1/posts');
+const apiRoutes = require('./routers');
 
 // Initializes express server
 const app = express();
@@ -36,9 +37,10 @@ app.use(morgan("common"));
 app.get('/', (req, res) => {
     res.send('Welcome to Social Network API');
 })
-app.use(`/auth`, authRoutes);
-app.use(`/users`, usersRoutes);
-app.use(`/posts`, postsRoutes);
+// app.use(`/auth`, authRoutes);
+// app.use(`/users`, usersRoutes);
+// app.use(`/posts`, postsRoutes);
+app.use(apiRoutes);
 
 // database and Server is up and running
 db.once("open", () => {
