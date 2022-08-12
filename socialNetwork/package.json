@@ -2,10 +2,10 @@
   "name": "socialnetwork-api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "seed": "node config/seeds.js"
   },
   "keywords": [],
@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "engines": {
+    "node" : "18.0.0"
   }
 }
