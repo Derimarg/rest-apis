@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const helmet = require("helmet");
 const morgan = require('morgan');
 const cors = require('cors');
-const apiV1 = process.env.API_V1
 
 // Loads env variables
 require('dotenv').config();
@@ -37,9 +36,9 @@ app.use(morgan("common"));
 app.get('/', (req, res) => {
     res.send('Welcome to Social Network API');
 })
-app.use(`/${apiV1}/auth`, authRoutesV1);
-app.use(`/${apiV1}/users`, usersRoutesV1);
-app.use(`/${apiV1}/posts`, postsRoutesV1);
+app.use(`/api/v1/auth`, authRoutesV1);
+app.use(`/api/v1/users`, usersRoutesV1);
+app.use(`/api/v1/posts`, postsRoutesV1);
 
 
 // database and Server is up and running
