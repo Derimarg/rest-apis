@@ -33,7 +33,9 @@ app.use(helmet());
 app.use(morgan("common"));
 
 // Routers, makes the app aware of routes in another folder
-
+app.get('/', (req, res) => {
+    res.send('Welcome to Social Network API');
+})
 app.use(`/auth`, authRoutes);
 app.use(`/users`, usersRoutes);
 app.use(`/posts`, postsRoutes);
