@@ -23,20 +23,12 @@ const app = express();
 app.use(cors());
 app.options('*', cors()) // include before other routes
 
-// get public files
-app.use(express.static('public'));
-
 // middleware
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Adds json parsing middleware to incoming requests
 app.use(helmet());
 app.use(morgan("common"));
-
-//Root route
-app.get('/', (req, res) => {
-    res.status(300).redirect('/info.html');
-});
 
 // Routers, makes the app aware of routes in another folder
 app.use(apiRoutes);
