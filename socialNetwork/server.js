@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 3001;
 const db = require("./config/dbConnection");
 
 // import routes
-const apiRoutes = require('./routers');
+const authRoutes = require('./routers/auth');
+const usersRoutes = require('./routers/users');
+const postsRoutes = require('./routers/posts');
 
 // Initializes express server
 const app = express();
@@ -31,7 +33,10 @@ app.use(helmet());
 app.use(morgan("common"));
 
 // Routers, makes the app aware of routes in another folder
-app.use(apiRoutes);
+
+app.use(`/auth`, authRoutes);
+app.use(`/users`, usersRoutes);
+app.use(`/posts`, postsRoutes);
 
 // database and Server is up and running
 db.once("open", () => {
